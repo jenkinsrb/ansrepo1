@@ -1,0 +1,31 @@
+---
+- name: play1
+  hosts: grp2
+  
+  tasks:
+  - name: install IIS
+    win_feature:
+      name: Web-Server
+      state: present
+      include_sub_features: true
+      include_management_tools: true
+
+  - name: WebSite Home Dirctory
+    win_file:
+      path: 'C:\inetpub\demosite1'
+      state: directory
+  - name: Welcome Document
+    win_file:
+      path: 'C:\inetpub\demosite1\default.htm' 
+      state: touch
+  - name: Welcome Content
+    win_lineinfile:
+      path: 'C:\inetpub\demosite1\default.htm' 
+      line: '<h1>Sample website</h1>' 
+      create: true
+  - name: Create Website
+    community.windows.win_iis_website:
+      name: site1 
+      state: started 
+      port: 8080  
+      physical_path: 'C:\inetpub\demosite1'

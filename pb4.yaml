@@ -1,0 +1,29 @@
+---
+- name: play1
+  hosts: grp1
+
+  tasks:
+  - name: task1
+    tags: t1
+    debug:
+      msg: " Hello task1 executed!!!"
+  - name: task2
+    tags: t2
+    debug:
+      msg: " Hello task2 executed!!!"
+  - name: task3
+    tags: never
+    debug:
+      msg: " Hello task3 executed!!!"
+  - name: task4
+    tags: t4
+    debug:
+      msg: " Hello task4 executed!!!"
+  - name: task5
+    tags: t5
+    debug:
+      msg: " Hello task5 executed!!!"
+  - name: task6
+    tags: t6
+    debug:
+      msg: " Hello task6 executed!!!"
